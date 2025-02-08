@@ -1,0 +1,28 @@
+<h1>Weather</h1>
+
+<%= form_tag weather_address_path do %>
+    <%= label_tag(:city, "City:") %>
+    <%= text_field_tag(:city) %><br>
+    <%= label_tag(:state, "State:") %>
+    <%= text_field_tag(:state) %><br>
+    <%= label_tag(:zip, "Zip:") %>
+    <%= number_field_tag(:zip) %><br><br>
+    <%= submit_tag("Get The Forecast") %>
+<% end %>
+<br>
+
+<% if !@forecast_data.blank? %>
+    <p> 7 Day Weather Forecast for <%= @display_name %> 
+        <% if @from_cache %>
+            FROM CACHE
+        <% end %>
+    </p>
+    <% @forecast_data["properties"]["periods"].each do |period| %>
+        <p> <%= period["name"] %> </p>
+        <dd><p>Temperature: <%= period["temperature"] %> </p>
+            <p>Short Forecast: <%= period["shortForecast"] %> </p>
+        </dd>
+    <% end %>
+<% else %>
+    <code> Please enter address information. Only US addresses are accepted. </code>
+<% end %>
