@@ -13,8 +13,6 @@ class NationalWeatherApi
     # Get the point metadata
     uri = URI("https://api.weather.gov/points/#{@lat},#{@long}")
     response = Net::HTTP.get_response(uri)
-    puts "response = #{response}"
-    puts "response.class = #{response.class}"
     get_forcast_data(response)
   end
 

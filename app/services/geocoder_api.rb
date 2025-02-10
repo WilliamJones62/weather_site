@@ -12,8 +12,6 @@ class GeocoderApi
     # Get the point metadata
     @display_name = ' '
     results = Geocoder.search(@address)
-    puts "results = #{results}"
-    puts "results.class = #{results.class}"
     if results
       latlong = { lat: results.first.coordinates[0].round(4), long: results.first.coordinates[1].round(4) }
       @display_name = results.first.display_name
@@ -31,6 +29,5 @@ class GeocoderApi
     display_name = results.first.display_name if results
 
     display_name
-    puts "display_name = #{display_name}"
   end
 end

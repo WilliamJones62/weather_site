@@ -33,7 +33,6 @@ class WeatherController < ApplicationController
   private
 
   def get_forecast_data(latlong)
-    puts "latlong = #{latlong}"
     @from_cache = true
     Rails.cache.fetch("#{latlong[:lat]}#{latlong[:long]}", expires_in: 30.minutes) do
       @from_cache = false
@@ -43,7 +42,6 @@ class WeatherController < ApplicationController
   end
 
   def format_address(param_array)
-    puts "param_array = #{param_array}"
     param_array.each do |param|
       if WeatherController.return_address.blank?
         WeatherController.put_address = (param)
@@ -52,11 +50,9 @@ class WeatherController < ApplicationController
         WeatherController.put_address = ("#{address_value},#{param}")
       end
     end
-    puts "address = #{WeatherController.return_address}"
   end
 
   def load_param_array(params)
-    puts "params = #{params}"
     param_array = []
     param_array.push(params['city']) unless params['city'].blank?
     param_array.push(params['state']) unless params['state'].blank?
