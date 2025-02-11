@@ -39,7 +39,7 @@ The user can enter any combination of City, State, and Zip code and press the Ge
 
 ## Test Suite
 
-In the test directory run the command 'bundle exec rspec'
+Start the application by running the command 'rails s'. Then run the command 'bundle exec rspec'
 
 ## License
 
